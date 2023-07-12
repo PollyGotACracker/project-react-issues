@@ -42,7 +42,7 @@ const Home = () => {
 
     const observer = new IntersectionObserver(observerHandler, {
       root: null,
-      rootMargin: "0px",
+      rootMargin: "50px",
       threshold: 1.0,
     });
     let localRef: HTMLDivElement | null = null;
@@ -57,10 +57,16 @@ const Home = () => {
   }, [loadMoreRef, observerHandler]);
 
   return (
-    <ul>
-      {issueList.length === 0 ? <Loading /> : <List data={issueList} />}
-      {!isLastPage && !isLoading && <Loading ref={loadMoreRef} />}
-    </ul>
+    <>
+      {issueList.length === 0 ? (
+        <Loading size={"full"} />
+      ) : (
+        <List data={issueList} />
+      )}
+      {!isLastPage && !isLoading && (
+        <Loading ref={loadMoreRef} size={"inline"} />
+      )}
+    </>
   );
 };
 

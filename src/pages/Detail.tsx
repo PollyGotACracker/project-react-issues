@@ -5,11 +5,13 @@ import { IssueDetail } from "../services/issue.service";
 import Content from "../components/Content";
 import UserAvatar from "../components/UserAvatar";
 import Loading from "../components/Loading";
+import ListItem from "../components/ListItem";
+import { styled } from "styled-components";
 
 const Detail = () => {
   const { id } = useParams();
   const { getIssueDetail } = useApiContext();
-  const [issue, setIssue] = useState<IssueDetail | {}>({});
+  const [issue, setIssue] = useState<IssueDetail>({} as IssueDetail);
 
   useEffect(() => {
     (async () => {
@@ -23,22 +25,31 @@ const Detail = () => {
   return (
     <>
       {!!Object.keys(issue).length ? (
-        Object.entries(issue).map((val) => {
-          const [key, value] = val;
-          switch (key) {
-            case "user_avatar_url":
-              return <UserAvatar key={key} url={value} />;
-            case "content":
-              return <Content key={key} data={value} />;
-            default:
-              return <div key={key}>{value}</div>;
-          }
-        })
+        <StyledMain>
+          <UserAvatar url={issue.user_avatar_url || ""} />
+          <ListItem item={issue} />
+          <Content data={issue.content || ""} />
+        </StyledMain>
       ) : (
-        <Loading />
+        <Loading size={"full"} />
       )}
     </>
   );
 };
+
+const StyledMain = styled.main`
+  display: grid;
+  row-gap: 20px;
+  column-gap: 10px;
+  grid-template-rows: fit-content(20%) max-content;
+  grid-template-columns: 100px 5fr;
+  margin: 30px;
+  margin-left: calc(10vw * 0.5);
+  margin-right: calc(10vw * 0.5);
+
+  & > div:last-child {
+    grid-column: 1 / span 2;
+  }
+`;
 
 export default Detail;

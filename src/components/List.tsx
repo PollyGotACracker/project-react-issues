@@ -2,6 +2,7 @@ import React from "react";
 import ListItem from "./ListItem";
 import Ad from "./Ad";
 import { IssueItem } from "../services/issue.service";
+import { styled } from "styled-components";
 
 type ListProps = {
   data: IssueItem[];
@@ -17,12 +18,20 @@ const List: React.FC<ListProps> = ({ data }) => {
         {index !== 0 && index % 4 === 0 && (
           <Ad aHref={A_HREF} imgSrc={IMG_SRC} />
         )}
-        <ListItem id={item.id} item={item} />
+        <ListItem item={item} />
       </React.Fragment>
     );
   });
 
-  return <>{getList}</>;
+  return <StyledUl>{getList}</StyledUl>;
 };
+
+const StyledUl = styled.ul`
+  list-style: none;
+  padding-inline-start: 0;
+  margin: 20px;
+  margin-left: calc(10vw * 0.5);
+  margin-right: calc(10vw * 0.5);
+`;
 
 export default List;
