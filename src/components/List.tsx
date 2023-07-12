@@ -15,7 +15,7 @@ type ListProps = {
 
 const ListItem: React.FC<ListItemProps> = ({ item, id }) => {
   return (
-    <Link to={`/${id}`}>
+    <Link to={`/issue/${id}`}>
       <li>
         {Object.entries(item).map((prop) => {
           const [key, value] = prop;
