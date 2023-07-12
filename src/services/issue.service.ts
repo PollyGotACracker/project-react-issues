@@ -1,4 +1,4 @@
-import { extractIssue, extractIssueList } from "../utils/extractIssue";
+import { extractIssueDetail, extractIssueList } from "../utils/extractIssue";
 import { issueApi, PATH } from "./core";
 
 export interface IssueItem {
@@ -27,11 +27,11 @@ export class IssueService {
       .finally(() => {});
   }
 
-  async getIssue(id: number): Promise<IssueDetail | void> {
+  async getIssueDetail(id: number): Promise<IssueDetail | void> {
     return issueApi
       .get(`${PATH.GET_ISSUE}/${id}`)
       .then((response) => {
-        return extractIssue(response.data);
+        return extractIssueDetail(response.data);
       })
       .catch((error) => {
         console.log(error);

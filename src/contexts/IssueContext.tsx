@@ -7,7 +7,7 @@ import {
 
 interface IssueContextType {
   getIssueList: () => Promise<IssueItem[] | void>;
-  getIssue: (id: number) => Promise<IssueDetail | void>;
+  getIssueDetail: (id: number) => Promise<IssueDetail | void>;
 }
 
 type ProvierProps = {
@@ -27,10 +27,10 @@ export const useIssueContext = () => {
 
 const IssueProvider = ({ children, issueService }: ProvierProps) => {
   const getIssueList = issueService.getIssueList.bind(issueService);
-  const getIssue = issueService.getIssue.bind(issueService);
+  const getIssueDetail = issueService.getIssueDetail.bind(issueService);
 
   return (
-    <IssueContext.Provider value={{ getIssueList, getIssue }}>
+    <IssueContext.Provider value={{ getIssueList, getIssueDetail }}>
       {children}
     </IssueContext.Provider>
   );
