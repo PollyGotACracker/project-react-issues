@@ -1,42 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import ListItem from "./ListItem";
 import Ad from "./Ad";
-
-type ListItemProps = {
-  item: { id: number };
-  id: string | number;
-};
+import { IssueItem } from "../services/issue.service";
 
 type ListProps = {
-  data: { id: number }[];
-  adAHref: string;
-  adImgSrc: string;
+  data: IssueItem[];
 };
 
-const ListItem: React.FC<ListItemProps> = ({ item, id }) => {
-  return (
-    <Link to={`/issue/${id}`}>
-      <li>
-        {Object.entries(item).map((prop) => {
-          const [key, value] = prop;
-          return <div key={key}>{value}</div>;
-        })}
-      </li>
-    </Link>
-  );
-};
+const A_HREF = "https://www.wanted.co.kr/";
+const IMG_SRC = "/images/ad_wanted.webp";
 
-const List: React.FC<ListProps> = ({ data, adAHref, adImgSrc }) => {
-  const content = data.map((item, index) => (
-    <React.Fragment key={index}>
-      {index !== 0 && index % 4 === 0 && (
-        <Ad key={`ad-${index}`} aHref={adAHref} imgSrc={adImgSrc} />
-      )}
-      <ListItem key={`item-${item.id}`} id={item.id} item={item} />
-    </React.Fragment>
-  ));
+const List: React.FC<ListProps> = ({ data }) => {
+  const getList = data.map((item, index) => {
+    return (
+      <React.Fragment key={item.id}>
+        {index !== 0 && index % 4 === 0 && (
+          <Ad aHref={A_HREF} imgSrc={IMG_SRC} />
+        )}
+        <ListItem id={item.id} item={item} />
+      </React.Fragment>
+    );
+  });
 
-  return <ul>{content}</ul>;
+  return <>{getList}</>;
 };
 
 export default List;

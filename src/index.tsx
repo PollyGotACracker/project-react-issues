@@ -3,9 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { IssueService } from "./services/issue.service";
-import IssueProvider from "./contexts/IssueContext";
 import { RouterProvider } from "react-router-dom";
 import { Router } from "./Router";
+import ApiProvider from "./contexts/ApiContext";
+import DataProvider from "./contexts/DataContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,9 +16,11 @@ const issueService = new IssueService();
 
 root.render(
   <React.StrictMode>
-    <IssueProvider issueService={issueService}>
-      <RouterProvider router={Router} />
-    </IssueProvider>
+    <ApiProvider issueService={issueService}>
+      <DataProvider>
+        <RouterProvider router={Router} />
+      </DataProvider>
+    </ApiProvider>
   </React.StrictMode>
 );
 
