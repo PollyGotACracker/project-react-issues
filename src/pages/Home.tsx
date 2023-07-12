@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useIssueContext } from "../contexts/IssueContext";
 import { IssueData } from "../services/issue.service";
+import List from "../components/List";
 
 const Home = () => {
   const [issueList, setIssueList] = useState<IssueData[]>([]);
@@ -14,19 +15,11 @@ const Home = () => {
   }, [getAllIssues]);
 
   return (
-    <div>
-      {issueList.map((issue) => {
-        return (
-          <div key={issue.number}>
-            <div>{issue.number}</div>
-            <div>{issue.title}</div>
-            <div>{issue.user}</div>
-            <div>{issue.created_at}</div>
-            <div>{issue.comments}</div>
-          </div>
-        );
-      })}
-    </div>
+    <List
+      data={issueList}
+      adAHref={"https://www.wanted.co.kr/"}
+      adImgSrc={"/images/ad_wanted.webp"}
+    />
   );
 };
 

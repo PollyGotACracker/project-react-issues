@@ -1,7 +1,7 @@
 import { issueApi, PATH } from "./core";
 
 export interface IssueData {
-  number: number;
+  id: number;
   title: string;
   user: string;
   created_at: string;
@@ -21,7 +21,7 @@ export class IssueService {
             .replace(regex, "$1년 $2월 $3일")
             .slice(0, 13);
           return {
-            number: item.number,
+            id: item.number,
             title: item.title,
             user: item.user.login,
             created_at: created_at,

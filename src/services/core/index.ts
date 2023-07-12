@@ -15,7 +15,7 @@ issueApi.interceptors.request.use((config) => {
   return config;
 });
 
-const PARAMS = {
+export const PARAMS = {
   OWNER: "facebook",
   REPO: "react",
   STATE: "open",
