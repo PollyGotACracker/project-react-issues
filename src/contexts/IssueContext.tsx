@@ -1,8 +1,13 @@
 import { createContext, useContext } from "react";
-import { IssueData, IssueService } from "../services/issue.service";
+import {
+  IssueItem,
+  IssueDetail,
+  IssueService,
+} from "../services/issue.service";
 
 interface IssueContextType {
-  getAllIssues: () => Promise<IssueData[] | void>;
+  getIssueList: () => Promise<IssueItem[] | void>;
+  getIssue: (id: number) => Promise<IssueDetail | void>;
 }
 
 type ProvierProps = {
@@ -21,11 +26,11 @@ export const useIssueContext = () => {
 };
 
 const IssueProvider = ({ children, issueService }: ProvierProps) => {
-  const getAllIssues: () => Promise<IssueData[] | void> =
-    issueService.getAllIssues.bind(issueService);
+  const getIssueList = issueService.getIssueList.bind(issueService);
+  const getIssue = issueService.getIssue.bind(issueService);
 
   return (
-    <IssueContext.Provider value={{ getAllIssues }}>
+    <IssueContext.Provider value={{ getIssueList, getIssue }}>
       {children}
     </IssueContext.Provider>
   );

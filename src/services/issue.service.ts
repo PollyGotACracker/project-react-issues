@@ -1,6 +1,7 @@
+import { extractIssue, extractIssueList } from "../utils/extractIssue";
 import { issueApi, PATH } from "./core";
 
-export interface IssueData {
+export interface IssueItem {
   id: number;
   title: string;
   user: string;
@@ -8,27 +9,29 @@ export interface IssueData {
   comments: number;
 }
 
+export interface IssueDetail extends IssueItem {
+  user_avatar_url?: string;
+  content?: string;
+}
+
 export class IssueService {
-  async getAllIssues(): Promise<IssueData[] | void> {
+  async getIssueList(): Promise<IssueItem[] | void> {
     return issueApi
       .get(PATH.GET_ALL_ISSUES)
       .then((response) => {
-        const data = response.data;
-        const result = data.map((item: any) => {
-          const _created_at = item.created_at;
-          const regex = /(\w+)-(\w+)-(\w+)T/;
-          const created_at = _created_at
-            .replace(regex, "$1년 $2월 $3일")
-            .slice(0, 13);
-          return {
-            id: item.number,
-            title: item.title,
-            user: item.user.login,
-            created_at: created_at,
-            comments: item.comments,
-          };
-        });
-        return result;
+        return extractIssueList(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {});
+  }
+
+  async getIssue(id: number): Promise<IssueDetail | void> {
+    return issueApi
+      .get(`${PATH.GET_ISSUE}/${id}`)
+      .then((response) => {
+        return extractIssue(response.data);
       })
       .catch((error) => {
         console.log(error);

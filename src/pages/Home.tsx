@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { useIssueContext } from "../contexts/IssueContext";
-import { IssueData } from "../services/issue.service";
+import { IssueItem } from "../services/issue.service";
 import List from "../components/List";
 
 const Home = () => {
-  const [issueList, setIssueList] = useState<IssueData[]>([]);
-  const { getAllIssues } = useIssueContext();
+  const [issueList, setIssueList] = useState<IssueItem[]>([]);
+  const { getIssueList } = useIssueContext();
 
   useEffect(() => {
     (async () => {
-      const data: IssueData[] | void = await getAllIssues();
+      const data: IssueItem[] | void = await getIssueList();
       data && setIssueList([...data]);
     })();
-  }, [getAllIssues]);
+  }, [getIssueList]);
 
   return (
     <List
