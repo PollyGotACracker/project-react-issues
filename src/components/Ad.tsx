@@ -9,10 +9,7 @@ const Ad: React.FC<AdProps> = ({ aHref, imgSrc }) => {
   return (
     <a href={aHref} target="_blank" rel="noopener noreferrer">
       <StyledAd>
-        <img
-          src={`${process.env.REACT_APP_BASE_URL}${imgSrc}`}
-          alt="ad_image"
-        />
+        <img src={`${process.env.PUBLIC_URL}${imgSrc}`} alt="ad_image" />
       </StyledAd>
     </a>
   );
