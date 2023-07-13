@@ -30,6 +30,7 @@ const StyledUl = styled.ul`
   list-style: none;
   padding-inline-start: 0;
   margin: 40px;
+  padding: 0;
   margin-left: calc(10vw * 0.5);
   margin-right: calc(10vw * 0.5);
 `;

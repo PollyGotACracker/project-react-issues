@@ -39,10 +39,6 @@ const Content: React.FC<ContentProps> = ({ data }) => {
 
 const StyledContent = styled.div`
   width: 100%;
-
-  & * {
-    word-break: break-all;
-  }
 `;
 
 export default Content;
