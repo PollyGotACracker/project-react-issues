@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/project-react-issues/static/css/main.714c7de6.css",
-    "main.js": "/project-react-issues/static/js/main.8b5851fd.js",
+    "main.js": "/project-react-issues/static/js/main.ea41fe34.js",
     "static/js/27.5c241c21.chunk.js": "/project-react-issues/static/js/27.5c241c21.chunk.js",
     "index.html": "/project-react-issues/index.html"
   },
   "entrypoints": [
     "static/css/main.714c7de6.css",
-    "static/js/main.8b5851fd.js"
+    "static/js/main.ea41fe34.js"
   ]
 }
