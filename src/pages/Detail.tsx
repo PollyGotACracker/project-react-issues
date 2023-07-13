@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { styled } from "styled-components";
 import { useApiContext } from "../contexts/ApiContext";
 import { IssueDetail } from "../services/issue.service";
 import Content from "../components/Content";
 import UserAvatar from "../components/UserAvatar";
 import Loading from "../components/Loading";
 import ListItem from "../components/ListItem";
-import { styled } from "styled-components";
 
 const Detail = () => {
   const { id } = useParams();
   const { getIssueDetail } = useApiContext();
   const [issue, setIssue] = useState<IssueDetail>({} as IssueDetail);
+  const isLoaded = !!Object.keys(issue).length;
 
   useEffect(() => {
     (async () => {
@@ -24,7 +25,7 @@ const Detail = () => {
 
   return (
     <>
-      {!!Object.keys(issue).length ? (
+      {isLoaded ? (
         <StyledMain>
           <UserAvatar url={issue.user_avatar_url || ""} />
           <ListItem item={issue} />

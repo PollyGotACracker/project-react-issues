@@ -22,6 +22,8 @@ const StyledLoading = styled.div<LoadingProps>`
   width: 100%;
   height: ${(props) => (props.size === "full" ? "50vh" : "100px")};
   text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
 `;
 
 export default Loading;

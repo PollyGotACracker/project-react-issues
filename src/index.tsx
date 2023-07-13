@@ -4,7 +4,7 @@ import "./styles/global.css";
 import reportWebVitals from "./reportWebVitals";
 import { IssueService } from "./services/issue.service";
 import { RouterProvider } from "react-router-dom";
-import { Router } from "./Router";
+import { Router } from "./router";
 import ApiProvider from "./contexts/ApiContext";
 import DataProvider from "./contexts/DataContext";
 

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import { useApiContext } from "../contexts/ApiContext";
 import { useDataContext } from "../contexts/DataContext";
 import List from "../components/List";
@@ -10,6 +10,8 @@ const Home = () => {
   const { issueList, issuePageNum, insertIssueList } = useDataContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isLastPage, setIsLastPage] = useState<boolean>(false);
+  const isIssueEmpty = issueList.length === 0;
+  const isCanScroll = !isLastPage && !isLoading;
 
   const loadMoreItem = useCallback(async () => {
     if (!isLastPage) {
@@ -27,14 +29,8 @@ const Home = () => {
 
   return (
     <>
-      {issueList.length === 0 ? (
-        <Loading size={"full"} />
-      ) : (
-        <List data={issueList} />
-      )}
-      {!isLastPage && !isLoading && (
-        <Loading ref={loadMoreRef} size={"inline"} />
-      )}
+      {isIssueEmpty ? <Loading size={"full"} /> : <List data={issueList} />}
+      {isCanScroll && <Loading ref={loadMoreRef} size={"inline"} />}
     </>
   );
 };

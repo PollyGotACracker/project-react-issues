@@ -26,8 +26,5 @@ const extractData = (item: RawIssueData, type: "list" | "item") => {
 export const extractIssueList = (list: RawIssueData[]) =>
   list.map((item: any) => extractData(item, "list"));
 
-export const extractIssueDetail = (item: RawIssueData) => {
-  const data = extractData(item, "item");
-
-  return data;
-};
+export const extractIssueDetail = (item: RawIssueData) =>
+  extractData(item, "item");

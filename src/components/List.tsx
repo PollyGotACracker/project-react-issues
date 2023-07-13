@@ -29,7 +29,7 @@ const List: React.FC<ListProps> = ({ data }) => {
 const StyledUl = styled.ul`
   list-style: none;
   padding-inline-start: 0;
-  margin: 20px;
+  margin: 40px;
   margin-left: calc(10vw * 0.5);
   margin-right: calc(10vw * 0.5);
 `;

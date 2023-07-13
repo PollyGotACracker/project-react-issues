@@ -11,18 +11,10 @@ type Action = {
   data: IssueItem[];
 };
 
-interface Reducer {
-  (state: State, action: Action): State;
-}
-
-type ProviderProps = {
-  children: React.ReactElement;
-};
-
 interface DataContextType {
   issueList: IssueItem[] | [];
   issuePageNum: number;
-  insertIssueList: React.Dispatch<any>;
+  insertIssueList: React.Dispatch<IssueItem[]>;
 }
 
 const DataContext = createContext<DataContextType | null>(null);
@@ -42,7 +34,7 @@ const INIT_STATE = {
 
 const INSERT_LIST = "data/INSERT_LIST";
 
-const reducer: Reducer = (state, action) => {
+const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case INSERT_LIST: {
       const data = action.data || [];
@@ -54,7 +46,7 @@ const reducer: Reducer = (state, action) => {
   }
 };
 
-const DataProvider = ({ children }: ProviderProps) => {
+const DataProvider = ({ children }: { children: React.ReactElement }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
   const insertIssueList = useCallback(
     (data: IssueItem[]) => dispatch({ type: INSERT_LIST, data }),
@@ -69,4 +61,5 @@ const DataProvider = ({ children }: ProviderProps) => {
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
+
 export default DataProvider;

@@ -1,21 +1,12 @@
 import { createContext, useContext } from "react";
-import {
-  IssueItem,
-  IssueDetail,
-  IssueService,
-} from "../services/issue.service";
+import { IssueService, IssueServiceType } from "../services/issue.service";
 
 type ProviderProps = {
   children: React.ReactElement;
   issueService: InstanceType<typeof IssueService>;
 };
 
-interface ApiContextType {
-  getIssueList: (pageNum: number) => Promise<IssueItem[] | boolean | void>;
-  getIssueDetail: (id: number) => Promise<IssueDetail | void>;
-}
-
-const ApiContext = createContext<ApiContextType | null>(null);
+const ApiContext = createContext<IssueServiceType | null>(null);
 
 export const useApiContext = () => {
   const context = useContext(ApiContext);
@@ -37,4 +28,5 @@ const ApiProvider = ({ children, issueService }: ProviderProps) => {
 
   return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>;
 };
+
 export default ApiProvider;

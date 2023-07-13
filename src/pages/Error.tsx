@@ -11,6 +11,7 @@ const Error = () => {
 const StyledError = styled.main`
   width: 100%;
   text-align: center;
+  word-break: keep-all;
 `;
 
 export default Error;

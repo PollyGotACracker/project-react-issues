@@ -20,11 +20,13 @@ const useObserver = (fetchFunc: () => Promise<void>) => {
   useEffect(() => {
     if (!loadMoreRef.current) return;
 
-    const observer = new IntersectionObserver(observerHandler, {
+    const options = {
       root: null,
-      rootMargin: "50px",
+      rootMargin: "100px",
       threshold: 1.0,
-    });
+    };
+    const observer = new IntersectionObserver(observerHandler, options);
+    // useEffect return(unmount) 에 ref 를 사용하지 않도록 함
     let localRef: HTMLDivElement | null = null;
     if (loadMoreRef.current) {
       observer.observe(loadMoreRef.current);

@@ -46,7 +46,7 @@ const StyledLi = styled.li`
   }
   & > a > div:last-child {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     text-align: center;
     grid-column: 2;
