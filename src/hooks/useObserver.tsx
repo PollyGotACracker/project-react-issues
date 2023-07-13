@@ -11,8 +11,8 @@ const useObserver = (fetchFunc: () => Promise<void>) => {
       if (entries.isIntersecting) {
         observer.unobserve(entries.target);
         await fetchFunc();
+        observer.observe(entries.target);
       }
-      observer.observe(entries.target);
     },
     [fetchFunc]
   );
@@ -22,7 +22,7 @@ const useObserver = (fetchFunc: () => Promise<void>) => {
 
     const options = {
       root: null,
-      rootMargin: "100px",
+      rootMargin: "50px",
       threshold: 1.0,
     };
     const observer = new IntersectionObserver(observerHandler, options);

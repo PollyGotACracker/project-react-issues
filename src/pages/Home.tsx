@@ -10,27 +10,28 @@ const Home = () => {
   const { issueList, issuePageNum, insertIssueList } = useDataContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isLastPage, setIsLastPage] = useState<boolean>(false);
-  const isIssueEmpty = issueList.length === 0;
-  const isCanScroll = !isLastPage && !isLoading;
+  const isListEmpty = issueList.length === 0;
+  const isWaiting = !isListEmpty && isLoading;
+  const isCanLoad = !isLastPage && !isLoading;
 
   const loadMoreItem = useCallback(async () => {
-    if (!isLastPage) {
-      setIsLoading(true);
-      const data = await getIssueList(issuePageNum);
-      if (Array.isArray(data)) {
-        insertIssueList([...data]);
-        setIsLoading(false);
-      }
-      if (!data) setIsLastPage(true);
+    if (isLastPage) return;
+    setIsLoading(true);
+    const data = await getIssueList(issuePageNum);
+    if (Array.isArray(data)) {
+      insertIssueList([...data]);
+      setIsLoading(false);
     }
+    if (!data) setIsLastPage(true);
   }, [getIssueList, insertIssueList, isLastPage, issuePageNum]);
 
   const { loadMoreRef } = useObserver(loadMoreItem);
 
   return (
     <>
-      {isIssueEmpty ? <Loading size={"full"} /> : <List data={issueList} />}
-      {isCanScroll && <Loading ref={loadMoreRef} size={"inline"} />}
+      {isListEmpty ? <Loading visible={true} /> : <List data={issueList} />}
+      {!isLastPage && <Loading ref={loadMoreRef} visible={isWaiting} />}
+      {isCanLoad && <div ref={loadMoreRef} />}
     </>
   );
 };

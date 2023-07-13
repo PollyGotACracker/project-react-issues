@@ -19,7 +19,8 @@ const StyledAd = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  width: 100%;
+  height: 59px;
 `;
 
 export default Ad;

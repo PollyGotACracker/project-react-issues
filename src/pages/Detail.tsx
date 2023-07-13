@@ -32,7 +32,7 @@ const Detail = () => {
           <Content data={issue.content || ""} />
         </StyledMain>
       ) : (
-        <Loading size={"full"} />
+        <Loading visible={true} />
       )}
     </>
   );
