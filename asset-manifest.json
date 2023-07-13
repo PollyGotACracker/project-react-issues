@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/project-react-issues/static/css/main.714c7de6.css",
-    "main.js": "/project-react-issues/static/js/main.1656f8aa.js",
-    "static/js/27.5c241c21.chunk.js": "/project-react-issues/static/js/27.5c241c21.chunk.js",
-    "index.html": "/project-react-issues/index.html"
+    "main.css": "https://pollygotacracker.github.io/project-react-issues/static/css/main.714c7de6.css",
+    "main.js": "https://pollygotacracker.github.io/project-react-issues/static/js/main.c28bc68c.js",
+    "static/js/27.5c241c21.chunk.js": "https://pollygotacracker.github.io/project-react-issues/static/js/27.5c241c21.chunk.js",
+    "index.html": "https://pollygotacracker.github.io/project-react-issues/index.html"
   },
   "entrypoints": [
     "static/css/main.714c7de6.css",
-    "static/js/main.1656f8aa.js"
+    "static/js/main.c28bc68c.js"
   ]
 }
