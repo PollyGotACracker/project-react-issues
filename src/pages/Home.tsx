@@ -3,13 +3,13 @@ import { useApiContext } from "../contexts/ApiContext";
 import { useDataContext } from "../contexts/DataContext";
 import List from "../components/List";
 import Loading from "../components/Loading";
+import useObserver from "../hooks/useObserver";
 
 const Home = () => {
   const { getIssueList } = useApiContext();
   const { issueList, issuePageNum, insertIssueList } = useDataContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isLastPage, setIsLastPage] = useState<boolean>(false);
-  const loadMoreRef = useRef<HTMLDivElement>(null);
 
   const loadMoreItem = useCallback(async () => {
     if (!isLastPage) {
@@ -21,40 +21,9 @@ const Home = () => {
       }
       if (!data) setIsLastPage(true);
     }
-  }, [insertIssueList, issuePageNum]);
+  }, [getIssueList, insertIssueList, isLastPage, issuePageNum]);
 
-  const observerHandler = useCallback(
-    async (
-      [entries]: IntersectionObserverEntry[],
-      observer: IntersectionObserver
-    ) => {
-      if (entries.isIntersecting) {
-        observer.unobserve(entries.target);
-        await loadMoreItem();
-      }
-      observer.observe(entries.target);
-    },
-    [loadMoreItem]
-  );
-
-  useEffect(() => {
-    if (!loadMoreRef.current) return;
-
-    const observer = new IntersectionObserver(observerHandler, {
-      root: null,
-      rootMargin: "50px",
-      threshold: 1.0,
-    });
-    let localRef: HTMLDivElement | null = null;
-    if (loadMoreRef.current) {
-      observer.observe(loadMoreRef.current);
-      localRef = loadMoreRef.current;
-    }
-
-    return () => {
-      if (localRef) return observer.unobserve(localRef);
-    };
-  }, [loadMoreRef, observerHandler]);
+  const { loadMoreRef } = useObserver(loadMoreItem);
 
   return (
     <>
