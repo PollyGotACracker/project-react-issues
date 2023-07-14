@@ -1,19 +1,14 @@
-import { Ref, forwardRef } from "react";
 import { styled } from "styled-components";
 
 type LoadingProps = {
   visible: boolean;
 };
 
-const Loading = forwardRef(
-  ({ visible }: LoadingProps, ref?: Ref<HTMLDivElement>) => {
-    return (
-      <StyledLoading $visible={visible} ref={ref}>
-        {visible && "Loading..."}
-      </StyledLoading>
-    );
-  }
-);
+const Loading = ({ visible }: LoadingProps) => {
+  return (
+    <StyledLoading $visible={visible}>{visible && "Loading..."}</StyledLoading>
+  );
+};
 
 const StyledLoading = styled.div<{ $visible: boolean }>`
   display: flex;

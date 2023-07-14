@@ -30,7 +30,7 @@ const Home = () => {
   return (
     <>
       {isListEmpty ? <Loading visible={true} /> : <List data={issueList} />}
-      {!isLastPage && <Loading ref={loadMoreRef} visible={isWaiting} />}
+      {!isLastPage && <Loading visible={isWaiting} />}
       {isCanLoad && <div ref={loadMoreRef} />}
     </>
   );
