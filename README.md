@@ -10,37 +10,20 @@
 
 - [https://pollygotacracker.github.io/project-react-issues/](https://pollygotacracker.github.io/project-react-issues/)
 
-## 프로젝트 구조
+## 실행 방법
 
+1. git bash 에서 아래 명령어 실행
+
+```bash
+git clone https://github.com/PollyGotACracker/project-react-issues.git
 ```
-📦src
- ┣ 📂components
- ┃ ┗ 📜...
- ┣ 📂constants
- ┃ ┗ 📜statusDesc.ts
- ┣ 📂contexts
- ┃ ┣ 📜ApiContext.tsx
- ┃ ┗ 📜DataContext.tsx
- ┣ 📂hooks
- ┃ ┗ 📜useObserver.tsx
- ┣ 📂pages
- ┃ ┣ 📜Detail.tsx
- ┃ ┣ 📜Error.tsx
- ┃ ┗ 📜Home.tsx
- ┣ 📂services
- ┃ ┣ 📂core
- ┃ ┃ ┗ 📜index.ts
- ┃ ┗ 📜issue.service.ts
- ┣ 📂styles
- ┃ ┗ 📜global.css
- ┣ 📂utils
- ┃ ┣ 📜alertStatus.ts
- ┃ ┗ 📜extractIssue.ts
- ┣ 📜App.tsx
- ┣ 📜index.tsx
- ┣ 📜router.tsx
- ┗ 📜...
-```
+
+2. VSCode 에서 프로젝트를 열고 터미널에서 `npm install`, `npm start` 실행
+
+## 실행 화면
+
+![infinite-scroll](https://github.com/PollyGotACracker/project-react-issues/assets/92136750/3e22d406-6109-4ec6-9c7b-27807ee5809d)
+![detail](https://github.com/PollyGotACracker/project-react-issues/assets/92136750/94b12cf3-44f3-4df5-9bc4-d6d42f56866e)
 
 ## 사용한 라이브러리
 
