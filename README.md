@@ -8,7 +8,7 @@
 
 ## 배포 주소
 
-- [https://pollygotacracker.github.io/project-react-issues/](https://pollygotacracker.github.io/project-react-issues/)
+- <s>`https://pollygotacracker.github.io/project-react-issues/`</s>
 
 ## 실행 방법
 
